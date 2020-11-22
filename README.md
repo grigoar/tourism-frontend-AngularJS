@@ -20,7 +20,7 @@
 
 -It comunicates with the server through the REST services with the help of the HTTP methods.
 
--It is part of the client-server architecture and the server can be found **[here](https://github.com/grigoar/tourism-backend-SpringBoot)**. 
+-It is part of the client-server architecture and the server can be found here -> **[BACKEND](https://github.com/grigoar/tourism-backend-SpringBoot)**. 
 
 
 
