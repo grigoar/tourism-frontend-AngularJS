@@ -1,27 +1,9 @@
-# AngularDemo
+# Tourism website - frontend
+##About
+This is a web application for the management of tourist attraction destinations based on the client-server architecture. The **[server](https://github.com/grigoar/tourism-backend-SpringBoot)** was developed with the help of Spring framework written in java, in order to manage the data stored into a MySQL database and to communicate with the client, which was developed with the AngularJS framework using JavaScript, HTML and CSS.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+##Description
+-This project is a website for managing the tourist attraction destinations around the world!
+-It has cool features as picking the destination from a map, leaving comments and ratings, making reservations for hotels and restaurants, seeing the next events or the most popular tourist attractions and seeing the directions on the map for the selected tourist attraction.
+-It can be used by different types of users whom can play and interact with and, of course, the admin has the full control for all the data.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
