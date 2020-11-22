@@ -1,0 +1,29 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+}
+
+body {
+  position: absolute;
+  z-index: -1;
+  background-color: #a2d0e2;
+  /*background-image:url('../../../assets/vacancy-background.png');
+  background-size:cover;
+  background-position: center center;*/
+  min-height:100% !important;
+  min-width:100% !important;
+  /*z-index: -1;*/
+  opacity:1;
+}
+div {
+  height: 550px;
+  width: 100%;
+ padding: 0px 10px;
+}
+#title{
+  color:black;
+  text-align: center;
+
+}

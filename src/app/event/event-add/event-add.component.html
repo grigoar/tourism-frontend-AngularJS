@@ -1,0 +1,42 @@
+<html>
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add a new event</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="event.name" placeholder="Name" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Email:</label>
+      <input [(ngModel)]="event.address" placeholder="Address" name="address" class="form-control" id="address">
+    </div>
+    <div class="form-group">
+      <label for="details">details:</label>
+      <input [(ngModel)]="event.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">Country:</label>-->
+        <!--<input [(ngModel)]="event.city_id" placeholder="city_id" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="event.lat" placeholder="46.3456324" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="event.lon" placeholder="25.3432564" name="longitude" class="form-control" id="longitude">
+      </div>
+      <div class="form-group">
+        <label for="start_time">start_time:</label>
+        <input type="datetime-local" [(ngModel)]="event.start_time" name="start_time" class="form-control" id="start_time"  min="2020-06-17T19:30" max="2020-12-25T19:30">
+        <!--<input type="datetime-local" [(ngModel)]="event.start_time" placeholder="start_time" name="start_time" class="form-control" id="start_time">-->
+      </div>
+      <br>
+    <button class="btn btn-success" (click)="onSubmit()">Create</button>
+
+  </form>
+</div>
+</body>
+</html>

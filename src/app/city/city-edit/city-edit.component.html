@@ -1,0 +1,49 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Edit tourist destination {{city.name}}</h2>
+    <form class="container-to-center">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="city.name" placeholder="{{city.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input [(ngModel)]="city.country" placeholder="{{city.country}}" name="country" class="form-control" id="country">
+    </div>
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="city.lat" placeholder="{{city.lat}}" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="city.lon" placeholder="{{city.lon}}" name="longitude" class="form-control" id="longitude">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" [(ngModel)]="city.description" placeholder="{{city.description}}" name="description" class="form-control" id="description"></textarea>
+      </div>
+
+
+    <button class="btn btn-success" (click)="editCity()">Update</button>
+
+
+      <p>
+        Add more images for {{city.name}}
+      </p>
+
+
+      <img *ngFor='let url of imgURLs' [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+      <p>
+        {{city.name}} images
+      </p>
+
+  </form>
+</div>
+<div *ngFor='let imagecity of cityImages'>
+<img src="data:image/png;base64,{{imagecity.pic}}" width="300" height="200" style="padding:10px"/>
+  <button mat-raised-button (click)="deleteCityImageById(imagecity.id)">Remove</button>
+</div>
+</body>

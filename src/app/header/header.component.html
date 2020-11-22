@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a  href="#" class="navbar-brand">Take a break!</a>
+  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <li class="nav-item">
+      <a href="" class="nav-link" routerLink="">Home </a>
+    </li>
+    <li class="nav-item" *ngIf="showAdminBoard">
+
+      <a href="/users" class="nav-link" routerLink="users">Users </a>
+    </li>
+    <!--<li class="nav-item" >-->
+      <!--<a href="/map-home" class="nav-link" routerLink="map-home">map</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item" >-->
+      <!--<a href="/map-directions" class="nav-link" routerLink="map-directions">See directions</a>-->
+    <!--</li>-->
+    <li class="nav-item">
+      <a href="/cities" class="nav-link" routerLink="cities">All tourist destinations</a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+    <li class="nav-item">
+      <a href="/insert" class="nav-link" routerLink="insert">Sign Up</a>
+    </li>
+    <li class="nav-item">
+      <a href="/login" class="nav-link" routerLink="login">Login</a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    <li class="nav-item">
+      <!--<a href="/user/{{id}}" class="nav-link" routerLink="/user/{{id}}">{{username }}</a>-->
+      <a href="/profile" class="nav-link" routerLink="/profile">{{username }}</a>
+    </li>
+    <li class="nav-item">
+      <a href class="nav-link" (click)="logout()">LogOut</a>
+    </li>
+  </ul>
+</nav>
+
+<!--<div class="container">-->
+  <!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--<ul class="navbar-nav">
+  <li ><button (click)="getUsers()" mat-flat-button color="primary">Users</button></li>
+  <li><a routerLink="/login" class="nav-link">Login</a></li>
+  <a href class="nav-link" (click)="logout()">LogOut</a>
+  <li *ngIf="showAdminBoard"><a  routerLink="/insert" class="nav-link">Add a new user</a></li>
+</ul>-->
+ <!--   <ul class="navbar-nav">
+&lt;!&ndash;
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/addemployee" class="nav-link">Add New Employee</a></li>
+&ndash;&gt;
+  <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+
+
+</ul>-->
+
+<!--</mat-toolbar>-->
+<!--<header>
+  <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a href="https://www.javainuse.com" class="navbar-brand">JavaInUse</a></div>
+
+    <ul class="navbar-nav">
+    &lt;!&ndash;  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/addemployee" class="nav-link">Add New Employee</a></li>
+    &ndash;&gt;
+      <li><button (click)="getUsers()" mat-flat-button color="primary">Users</button></li>
+      <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+      &lt;!&ndash;<button (click)="loginService.isUserLoggedIn()" routerLinkActive="/login" class="nav-link" mat-flat-button color="primary">Login</button>
+&ndash;&gt;
+    </ul>
+
+  </nav>
+
+</header>-->

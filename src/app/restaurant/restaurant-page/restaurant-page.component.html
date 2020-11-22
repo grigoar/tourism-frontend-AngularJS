@@ -1,0 +1,251 @@
+<body>
+<div class="container">
+
+  <div>
+    <h2>Welcome to {{restaurant.name}}</h2><br>
+    <img *ngFor='let imageRestaurant of restaurantImages'  src="data:image/png;base64,{{imageRestaurant.pic}}" width="200" height="200"/><br><br>
+    <p><label></label> {{restaurant.details}} </p>
+
+    <div id="moderator" *ngIf="showModeratorBoard">
+      <h2>Moderator and admin panel</h2>
+      <button color="accent" mat-raised-button (click)="editRestaurant()">Edit current restaurant</button>
+      <br>
+      <br>
+      <button color="accent" mat-raised-button (click)="removeRestaurant(restaurant.id)">Remove current restaurant</button>
+      <br>
+      <br>
+
+      <button mat-raised-button color="accent" (click)="addRestaurant()">Add a new restaurant</button>
+
+      <h5>
+        Add more images for {{restaurant.name}}
+      </h5>
+
+
+      <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+    </div>
+  </div>
+
+
+  <ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+   <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+  </span>
+  </ng-template>
+
+
+  <ngb-rating [(rate)]="restaurant.ratingavr" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+
+  <hr>
+  <pre>Rating: <b>{{restaurant.ratingavr}}</b></pre>
+
+  <div class="foods" >
+    <h2>We are waiting you with the following types of foods:</h2>
+      <ul class="typeoffoods">
+        <li *ngFor="let typeOfFood of typesOfFood">
+          {{typeOfFood.type_of_food}}
+          <button *ngIf="showModeratorBoard" color="accent" mat-raised-button (click)="removeTypeOfFood(typeOfFood.id,typeOfFood.type_of_food)">Remove</button>
+        </li>
+      </ul>
+
+    <button color="primary" mat-raised-button *ngIf="showModeratorBoard" (click)="toggleTypeOfFood()">
+      {{showHideTypeOfFoodButton}}
+    </button>
+    <div class="form-group" *ngIf="showTypeOfFood">
+      <label #target for="food_name">Type of food:</label>
+      <input [(ngModel)]="typeOfFoodAdd.type_of_food" placeholder="type of food" name="food_name" class="form-control" id="food_name">
+      <label #target for="food_details">Type of food details:</label>
+      <input [(ngModel)]="typeOfFoodAdd.details" placeholder="type of food details" name="food_details" class="form-control" id="food_details">
+      <button class="btn btn-success" (click)="onAddTypeOfFood()">Submit the new type of food</button>
+
+    </div>
+  </div>
+
+
+  <br>
+  <button color="primary" mat-raised-button (click)="scroll(target)">
+    See directions
+  </button>
+
+  <br>
+
+  <div *ngIf="showModeratorBoard">
+    <label for="startDate">Select day to filter the reservations:</label>
+    <input type="date" [(ngModel)]="startDate" name="start_time" class="form-control" id="startDate">
+    <button color="primary" mat-raised-button (click)="filterByDate(startDate)">Filter</button>
+  </div>
+
+  <h4 *ngIf="showModeratorBoard">All reservations for this restaurant- {{nrTablesAvailable}} tables available</h4>
+  <table *ngIf="showModeratorBoard" class="allreservations" >
+    <tr>
+      <th>Name booked</th>
+      <th>Telephone</th>
+      <th>Details</th>
+      <th>Book day</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let reservation of userRestaurantReservationsByDate">
+      <td>{{reservation.book_name}}</td>
+      <td>{{reservation.user.telephone}}</td>
+      <td class="details">{{reservation.details}}</td>
+      <td>{{reservation.reservation_start}}</td>
+      <td><button color="accent" mat-raised-button (click)="editReservation(reservation.id)">Edit</button></td>
+      <td><button color="accent" mat-raised-button (click)="removeReservation(reservation.id)">Remove</button></td>
+    </tr>
+  </table>
+
+  <h4 *ngIf="isLoggedIn">Your reservations for this restaurant</h4>
+  <table *ngIf="isLoggedIn" class="alluserreservations" >
+    <tr>
+      <th>Name booked</th>
+      <th>Telephone</th>
+      <th>Details</th>
+      <th>Book day</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let reservation of userRestaurantReservations">
+      <td>
+        <p contenteditable="true" type="text">
+          {{reservation.book_name}}
+        </p></td>
+      <td>{{reservation.user.telephone}}</td>
+      <td class="details">{{reservation.details}}</td>
+      <td>{{reservation.reservation_start}}</td>
+      <td><button color="accent" mat-raised-button (click)="editReservation(reservation.id)">Edit</button></td>
+      <td><button color="accent" mat-raised-button (click)="removeReservation(reservation.id)">Remove</button></td>
+    </tr>
+  </table>
+
+  <h5>Add a new reservation</h5>
+  <button color="primary" mat-raised-button *ngIf="isLoggedIn" (click)="toggleReservation()">
+    {{showHideReservationButton}}
+  </button>
+  <div class="form-group" *ngIf="showReservation">
+    <label #target for="book_name">Booking name:</label>
+    <input [(ngModel)]="reservationAdd.book_name" placeholder="book_name" name="book_name" class="form-control" id="book_name">
+    <label #target for="reservationdetails">Reservation details:</label>
+    <input [(ngModel)]="reservationAdd.details" placeholder="reservationdetails" name="details" class="form-control" id="reservationdetails">
+    <div class="form-group">
+      <label for="reservation_start">Reservation start time:</label>
+      <input type="date" [(ngModel)]="reservationAdd.reservation_start" name="reservation_start" class="form-control" id="reservation_start" >
+    </div>
+
+    <button class="btn btn-success" (click)="onAddReservation()">Submit the new reservation</button>
+
+  </div>
+
+  <h2> Feedback from other {{restaurant.name}}`s clients: </h2>
+
+  <div class="container task-list">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">
+          <div class="post-heading">
+            <div class="pull-left image">
+              <!-- <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
+              <!--<img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>-->
+            </div>
+            <div class="pull-left meta">
+              <div class="title h5">
+                <img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>
+                <a href="#"><b>{{comment.commentUsername}}</b></a>
+                made a comment.
+              </div>
+              <h6 class="text-muted time">{{comment.date | date : "short"}}</h6>
+            </div>
+          </div>
+          <div class="post-description">
+            <div class="stats">
+              <td  *ngIf="comment.rating >0"><ngb-rating [rate]="comment.rating"[readonly]=true></ngb-rating></td>
+            </div>
+            <p>{{comment.details}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- varianta 2 comments-->
+<!--
+  <div *ngIf="comments.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+    <div *ngIf="comments.length > 0" >
+      <table class="comments" >
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Details</th>
+          <th >Rating</th>
+        </tr>
+        &lt;!&ndash;
+              <tr *ngFor="let obj of objects | orderBy : ObjFieldName: OrderByType">
+                *ngIf="comments.length == 0"
+                ObjFieldName: object field name you want to sort;
+
+                OrderByType: boolean; true: descending order; false: ascending;
+                | orderBy :'name':false"
+
+                SAU
+
+                input/list | sortBy:’asc|desc’: ‘property’
+                |orderBy:'desc':'name'"
+        &ndash;&gt;
+
+        <tr *ngFor="let comment of comments | orderBy :'rating':true">
+          <td>{{comment.commentUsername}}</td>
+          <td>{{comment.details}}</td>
+          <td>{{comment.date | date : "short"}}</td>
+          <td  *ngIf="comment.rating >0" ><ngb-rating [rate]="comment.rating"[readonly]=true></ngb-rating></td>
+        </tr>
+      </table>
+    </div>
+-->
+
+  <!--<button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->
+ <!-- <h2>Add new comment</h2>
+  <div class="form-group">
+    <label for="details">details:</label>
+    <input [(ngModel)]="commentadd.details" placeholder="details" name="details" class="form-control" id="details">
+  </div>
+  <ngb-rating [(rate)]="rating"></ngb-rating>
+  <hr>
+  <pre>Rate: <b>{{rating}}</b></pre>
+  <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(0)">Clear</button>
+  <button class="btn btn-success" (click)="onSubmit(rating)">Add new comment</button>
+  </div>-->
+
+  <button color="primary" mat-raised-button *ngIf="isLoggedIn" (click)="toggle()">
+    {{commentsubmitted}}
+  </button>
+  <div class="form-group" *ngIf="show">
+    <label #target for="details">details:</label>
+    <input [(ngModel)]="commentadd.details" placeholder="details" name="details" class="form-control" id="details">
+
+    <ngb-rating [(rate)]="rating" [readonly]=false></ngb-rating>
+    <hr>
+    <pre>Rating: <b>{{rating}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(0)">Clear</button>
+    <button class="btn btn-success" (click)="onSubmit(rating)">Submit comment</button>
+  </div>
+
+
+
+  <br>
+</div>
+
+<div #target class="map-frame" >
+  <h2>See the map directions to {{restaurant.name}}</h2>
+
+  <div id="map" ></div>
+</div>
+<br>
+  <canvas *ngIf="showModeratorBoard" id="lineChart" ></canvas>
+
+
+</body>

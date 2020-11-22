@@ -1,0 +1,21 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add Restaurant</h2>
+    <form>
+    <div class="form-group">
+      <label for="type_of_food">Name type_of_food :</label>
+      <input [(ngModel)]="typeOfFood.type_of_food" placeholder="{{typeOfFood.type_of_food}}" name="type_of_food" class="form-control" id="type_of_food">
+    </div>
+
+    <div class="form-group">
+      <label for="details">details:</label>
+      <input [(ngModel)]="typeOfFood.details" placeholder="{{typeOfFood.details}}" name="details" class="form-control" id="details">
+    </div>
+
+      <div class="form-group">
+        <label for="restaurant_id">restaurant_id:</label>
+        <input [(ngModel)]="typeOfFood.restaurant_id" placeholder="{{typeOfFood.restaurant_id}}" name="restaurant_id" class="form-control" id="restaurant_id">
+      </div>
+    <button class="btn btn-success" (click)="onSubmit()">Update</button>
+
+  </form>
+</div>

@@ -1,0 +1,47 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add Comment</h2>
+    <form>
+      <div class="form-group">
+        <label for="details">details:</label>
+        <input [(ngModel)]="comment.details" placeholder="details" name="details" class="form-control" id="details">
+      </div>
+<!--      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input [(ngModel)]="comment.rating" placeholder="rating" name="rating" class="form-control" id="rating">
+      </div>-->
+      <ngb-rating [(rate)]="rating"></ngb-rating>
+      <hr>
+      <pre>Rate: <b>{{rating}}</b></pre>
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(null)">Clear</button>
+<!--    <div class="form-group">
+      <label for="date">date:</label>
+      <input [(ngModel)]="comment.date" placeholder="date" name="date" class="form-control" id="date">
+    </div>
+      <div class="form-group">
+        <label for="event_id">event_id:</label>
+        <input [(ngModel)]="comment.event_id" placeholder="event_id" name="event_id" class="form-control" id="event_id">
+      </div>
+      <div class="form-group">
+        <label for="hotel_id">hotel_id:</label>
+        <input [(ngModel)]="comment.hotel_id" placeholder="hotel_id" name="hotel_id" class="form-control" id="hotel_id">
+      </div>
+      <div class="form-group">
+        <label for="restaurant_id">restaurant_id:</label>
+        <input [(ngModel)]="comment.restaurant_id" placeholder="restaurant_id" name="restaurant_id" class="form-control" id="restaurant_id">
+      </div>
+      <div class="form-group">
+        <label for="touristAttraction_id">Country:</label>
+        <input [(ngModel)]="comment.touristAttraction_id" placeholder="touristAttraction_id" name="touristAttraction_id" class="form-control" id="touristAttraction_id">
+      </div>
+      <div class="form-group">
+        <label for="user_id">user_id:</label>
+        <input [(ngModel)]="comment.user_id" placeholder="user_id" name="user_id" class="form-control" id="user_id">
+      </div>
+      <div class="form-group">
+        <label for="commentUsername">commentUsername:</label>
+        <input [(ngModel)]="comment.commentUsername" placeholder="commentUsername" name="commentUsername" class="form-control" id="commentUsername">
+      </div>-->
+    <button class="btn btn-success" (click)="onSubmit(rating)">Create</button>
+
+  </form>
+</div>

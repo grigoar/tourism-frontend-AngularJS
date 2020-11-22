@@ -1,0 +1,152 @@
+<html>
+<body>
+<div class="bg"></div>
+<div id="container">
+
+  <div class="form-wrap">
+    <div class="bg-form"></div>
+    <h1>Log in</h1>
+    <br>
+    <p style="color: red">{{errorMessage }}</p>
+    <form >
+      <div class="form-group">
+        <label for="username">Username*:</label>
+        <input [(ngModel)]="form.username" placeholder="Username" name="Username" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password*:</label>
+        <input [type]="isPassword?'password':'text'" [(ngModel)]="form.password" placeholder="Password (minimum 6 characters)"name="Password" id="password" required
+               minlength="6" >
+        <span id="press" (mousedown)="showPassword()" (mouseup)="hidePassword()">Press to show !</span>
+      </div>
+      <button class="btn" (click)="onSubmit()">Log in</button>
+
+      <br>
+
+    </form>
+  </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+<!--
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="username">Username</label>
+        <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && username.invalid"
+        >
+          Username is required!
+        </div>
+      </div>
+      </div>
+
+      &lt;!&ndash; onmousedown="this.type='text'"
+           onmouseup="this.type='password'"
+           onmousemove="this.type='password'"&ndash;&gt;
+      <div class="form-group">
+        <label  for="password">Password</label>
+        <div class="col-md-6">
+          <input
+            [type]="isPassword?'password':'text'"
+            id="password_field"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+
+          />
+          &lt;!&ndash; An element to toggle between password visibility &ndash;&gt;
+          <span (mousedown)="showPassword()" (mouseup)="hidePassword()">Press to show !</span>
+          &lt;!&ndash; <span class="p-viewer">
+                   <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+                 </span>&ndash;&gt;
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && password.invalid"
+        >
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          Login
+        </button>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+
+
+
+
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+&lt;!&ndash;
+<div class="col-lg-3">
+  <h5 id="commonHeader">Current Password</h5>
+  <input type="password" id="currentPass" name="currentpass" class="commanClass" placeholder="Current Password">
+  <i onclick="show('currentPass')"  class="fa fa-eye-slash" id="display"></i>
+</div>
+&ndash;&gt;
+-->

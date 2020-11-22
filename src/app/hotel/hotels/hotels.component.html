@@ -1,0 +1,45 @@
+<div class="container">
+  <h2> Hotels in this city</h2>
+  <div *ngIf="hotels.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="hotels.length > 0">
+    <table mat-table [dataSource]="hotels" class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.name}}</td>
+      </ng-container>
+
+      <!-- address Column -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.address}}</td>
+      </ng-container>
+
+      <!-- details Column -->
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.details}}</td>
+      </ng-container>
+
+      <!-- Contact Column -->
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef> Contact</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.contact}}</td>
+      </ng-container>
+      <!-- Website Column -->
+      <ng-container matColumnDef="Website">
+        <th mat-header-cell *matHeaderCellDef> Website</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.website}}</td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>

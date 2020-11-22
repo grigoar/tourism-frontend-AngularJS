@@ -1,0 +1,18 @@
+<body>
+<div id="container">
+  <div class="map-container" xmlns:height="http://www.w3.org/1999/xhtml">
+    <!-- <button mat-raised-button (click)="onMap()">CEVA</button>-->
+
+    <div class="map-frame" >
+      <h2 id="title">Pick a tourist destination from the map</h2>
+
+      <div id="map" ></div>
+
+    </div>
+
+  </div>
+  <br>
+  <br><br>
+  <button *ngIf="showAdminBoard" mat-raised-button (click)="onMap()">Go to the list of vacation destinations</button>
+</div>
+</body>

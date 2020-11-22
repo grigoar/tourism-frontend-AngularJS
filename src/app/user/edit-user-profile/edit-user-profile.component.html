@@ -1,0 +1,53 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Update Profile</h2>
+  <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="user.name" placeholder="{{user.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input [(ngModel)]="user.email" placeholder="{{user.email}}" name="email" class="form-control" id="email">
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input [(ngModel)]="user.city" placeholder="{{user.city}}" name="city" class="form-control" id="city">
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input [(ngModel)]="user.country" placeholder="{{user.country}}" name="country" class="form-control" id="country">
+    </div>
+ <!--   <div class="form-group">
+      <label for="username">Username:</label>
+      <input [(ngModel)]="user.username" placeholder="{{user.username}}" name="Username" class="form-control" id="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input [(ngModel)]="user.password" placeholder="{{user.password}}" name="Password" class="form-control" id="password">
+    </div>-->
+    <div class="form-group">
+      <label for="telephone">Telephone:</label>
+      <input [(ngModel)]="user.telephone" placeholder="{{user.telephone}}" name="telephone" class="form-control" id="telephone">
+    </div>
+
+
+
+    <button class="btn btn-success" (click)="editUser()">Update</button>
+
+  </form>
+  <br>
+  <div>
+    <h6>Current profile image</h6>
+  <img src="data:image/jpeg;base64,{{userImage.pic}}" width="200" height="200"/>
+  </div>
+  <div>
+    <h6>Change the profile image</h6>
+    <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+
+  <!--<input type='file' (change)="onFileChanged($event)" multiple>-->
+  <input type='file' (change)="onFileChanged($event)">
+  <button class="btn btn-success" (click)="onUpload()">Change the current profile image</button>
+  </div>
+  </div>
+</body>

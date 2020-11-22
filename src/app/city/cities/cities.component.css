@@ -1,0 +1,53 @@
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 250px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 20px;
+  text-align: center;
+}
+img {
+  border-radius: 8px;
+}
+
+body {
+  position: absolute;
+  z-index: -1;
+  background-color: #a2d0e2;
+  /*background-image:url('../../../assets/vacancy-background.png');
+  background-size:cover;
+  background-position: center center;*/
+  min-height:100%;
+  min-width:100%;
+  /*z-index: -1;*/
+  opacity:1;
+}
+.squares{
+  padding-left: 10px;
+}
+ng-container{
+ margin: 10px 10px;
+}
+.table-squares{
+  padding:10px;
+}
+table{
+  background: #e07600;
+}
+.buttons-moderator{
+  border:3px blueviolet solid;
+  border-radius: 5px;
+}

@@ -1,0 +1,26 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Edit Comment</h2>
+    <form>
+      <div class="form-group">
+        <label for="book_name">Book Name:</label>
+        <input [(ngModel)]="reservation.book_name" placeholder="{{reservation.book_name}}" name="book_name" class="form-control" id="book_name">
+      </div>
+    <div class="form-group">
+      <label for="details">Details:</label>
+      <input [(ngModel)]="reservation.details" placeholder="{{reservation.details}}" name="details" class="form-control" id="details">
+    </div>
+      <div class="form-group">
+        <label for="start_date">Reservation start date:</label>
+        <input type="date" [(ngModel)]="reservation.reservation_start" placeholder="{{reservation.reservation_start}}" name="start_date" class="form-control" id="start_date">
+      </div>
+      <div class="form-group" *ngIf="showEndDate">
+        <label for="end_date">Reservation end date:</label>
+        <input type="date" [(ngModel)]="reservation.reservation_end" placeholder="{{reservation.reservation_end}}" name="end_date" class="form-control" id="end_date">
+      </div>
+
+    <button class="btn btn-success" (click)="editReservation()">Update</button>
+
+  </form>
+</div>
+</body>

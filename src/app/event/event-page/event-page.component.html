@@ -1,0 +1,196 @@
+<body>
+<div class="container">
+  <div>
+    <div>
+
+      <h2>{{event.name}} </h2>
+      <p><label>Start date:</label> {{event.start_time| date : "medium"}} </p>
+      <img *ngFor='let imageEvent of eventImages'  src="data:image/png;base64,{{imageEvent.pic}}" width="200" height="200"/>
+    </div>
+
+
+    <p><label></label> {{event.details}} </p>
+    <p><label>Going: </label> {{event.going}} </p>
+    <p><label>Maybe going: </label> {{event.maybe}} </p>
+
+
+  </div>
+
+  <form name="myForm" *ngIf="!submitted && isLoggedIn">
+    <label><input type="radio" name="test" [(ngModel)]="radioValue" value="1"/> Going</label>
+    <label><input type="radio" name="test"[(ngModel)]="radioValue" value="2"/> Maybe going</label>
+    <label><input type="radio" name="test"[(ngModel)]="radioValue" value="0"/> Not going</label>
+    <!--<div>currently selected: {{radioValue}} </div>-->
+    <!--<button mat-raised-button (click)="submitAnswer(radioValue)">Submit</button>-->
+    <br>
+    <br>
+    <button mat-raised-button color="primary"(click)="submitAnswerUsersEvent(radioValue)">Submit Option</button>
+  </form>
+
+  <div id="moderator" *ngIf="showModeratorBoard">
+    <h2>Moderator and admin panel</h2>
+    <button color="accent" mat-raised-button (click)="editEvent()">Edit current event</button>
+    <br>
+    <br>
+    <button color="accent" mat-raised-button (click)="removeEvent(event.id)">Remove current event</button>
+    <br>
+    <br>
+
+    <button mat-raised-button color="accent" (click)="addEvent()">Add a new event</button>
+
+    <h5>
+      Add more images for {{event.name}}
+    </h5>
+
+
+    <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+
+    <input type='file' (change)="onFileChanged($event)" multiple>
+    <button class="btn btn-success" (click)="onUpload()">Create</button>
+  </div>
+  <br>
+ <!-- ng-disabled="myForm.invalid"-->
+  <!--<h2> Comments for {{event.name}}</h2>
+  <div *ngIf="comments.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+    <div *ngIf="comments.length > 0" >
+      <table class="comments" >
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Details</th>
+          <th>Rating</th>
+        </tr>
+        &lt;!&ndash;
+              <tr *ngFor="let obj of objects | orderBy : ObjFieldName: OrderByType">
+
+                ObjFieldName: object field name you want to sort;
+
+                OrderByType: boolean; true: descending order; false: ascending;
+                | orderBy :'name':false"
+
+                SAU
+
+                input/list | sortBy:’asc|desc’: ‘property’
+                |orderBy:'desc':'name'"
+        &ndash;&gt;
+
+        <tr *ngFor="let comment of comments | orderBy :'rating':true">
+          <td>{{comment.commentUsername}}</td>
+          <td>{{comment.details}}</td>
+          <td>{{comment.date | date : "short"}}</td>
+          <td *ngIf="comment.rating >0"><ngb-rating [rate]="comment.rating"></ngb-rating></td>
+        </tr>
+      </table>
+    </div>
+-->
+
+  <button mat-raised-button color="primary"  (click)="scroll(target)">
+    See directions
+  </button>
+
+  <!-- <div *ngIf="comments.length == 0">
+     <div class="alert alert-info" role="alert">Loading...</div>
+   </div>
+
+     <div *ngIf="comments.length > 0" >
+       <table class="comments" >
+         <tr>
+           <th>Name</th>
+           <th>Phone Number</th>
+           <th>Details</th>
+           <th >Rating</th>
+         </tr>
+         &lt;!&ndash;
+               <tr *ngFor="let obj of objects | orderBy : ObjFieldName: OrderByType">
+                 *ngIf="comments.length == 0"
+                 ObjFieldName: object field name you want to sort;
+
+                 OrderByType: boolean; true: descending order; false: ascending;
+                 | orderBy :'name':false"
+
+                 SAU
+
+                 input/list | sortBy:’asc|desc’: ‘property’
+                 |orderBy:'desc':'name'"
+         &ndash;&gt;
+
+         <tr *ngFor="let comment of comments | orderBy :'rating':true">
+           <td>{{comment.commentUsername}}</td>
+           <td>{{comment.details}}</td>
+           <td>{{comment.date | date : "short"}}</td>
+           <td  *ngIf="comment.rating >0" ><ngb-rating [rate]="comment.rating"[readonly]=true></ngb-rating></td>
+         </tr>
+       </table>
+     </div>-->
+
+  <!--<button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->
+  <h2 *ngIf="isLoggedIn">Add new comment</h2>
+  <button *ngIf="isLoggedIn" color="primary" mat-raised-button (click)="toggle()">
+    {{commentsubmitted}}
+  </button>
+  <div class="form-group"  *ngIf="show">
+    <label #target for="details">details:</label>
+    <input [(ngModel)]="commentadd.details" placeholder="details" name="details" class="form-control" id="details">
+
+<!--nu avem nevoie de rating la evenimente-->
+    <!--<ngb-rating [(rate)]="rating" [readonly]=false></ngb-rating>-->
+    <!--<hr>-->
+    <!--<pre>Rate: <b>{{rating}}</b></pre>-->
+    <!--<button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(0)">Clear</button>-->
+    <button class="btn btn-success" (click)="onSubmit(rating)">Submit comment</button>
+  </div>
+
+  <h2> Comments for {{event.name}}</h2>
+  <div class="container task-list">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">
+          <div class="post-heading">
+            <div class="pull-left image">
+              <!-- <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
+              <!--<img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>-->
+            </div>
+            <div class="pull-left meta">
+              <div class="title h5">
+                <img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>
+                <a href="#"><b>{{comment.commentUsername}}</b></a>
+                made a comment.
+              </div>
+              <h6 class="text-muted time">{{comment.date | date : "short"}}</h6>
+            </div>
+          </div>
+          <div class="post-description">
+            <div class="stats">
+              <!--<td *ngIf="comment.rating >0">-->
+                <!--<ngb-rating [rate]="comment.rating" [readonly]=true></ngb-rating>-->
+              <!--</td>-->
+            </div>
+            <p>{{comment.details}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div #target class="map-frame" >
+  <h2>See the map directions to {{event.name}}</h2>
+
+  <div id="map" ></div>
+</div>
+<br>
+
+<!--  <button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->
+ <!-- <button mat-raised-button (click)="changeSub()">Play music</button>-->
+
+
+
+
+</body>
+
+<!--                                           -->
+
+<!--<button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->

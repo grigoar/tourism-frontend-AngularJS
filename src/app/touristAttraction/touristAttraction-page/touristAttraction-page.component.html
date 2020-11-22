@@ -1,0 +1,342 @@
+<body>
+<div class="container">
+  <div>
+    <h2>{{touristAttraction.name}}</h2>
+
+
+    <p><label></label> {{touristAttraction.details}} </p>
+
+    <div>
+
+      <img *ngFor='let imageTouristAttraction of touristAttractionImages'  src="data:image/png;base64,{{imageTouristAttraction.pic}}" width="300" height="200" style="margin: 10px 10px"/>
+    </div>
+
+    <div id="moderator" *ngIf="showModeratorBoard">
+      <h2>Moderator and admin panel</h2>
+      <button color="accent" mat-raised-button (click)="editTouristAttraction()">Edit current tourist attraction</button>
+      <br>
+      <br>
+      <button color="accent" mat-raised-button (click)="removeTouristAttraction(touristAttraction.id)">Remove current tourist attraction</button>
+      <br>
+      <br>
+
+      <button mat-raised-button color="accent" (click)="addTouristAttraction()">Add a new tourist attraction</button>
+
+      <h5>
+        Add more images for {{touristAttraction.name}}
+      </h5>
+
+
+      <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+    </div>
+
+  </div>
+
+
+  <ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+   <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+  </span>
+  </ng-template>
+
+
+  <ngb-rating [(rate)]="touristAttraction.ratingavr" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+
+  <hr>
+  <pre>Rate: <b>{{touristAttraction.ratingavr}}</b></pre>
+
+
+
+  <!--Carousel Wrapper-->
+ <!-- <div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+    &lt;!&ndash;Controls&ndash;&gt;
+    <div class="controls-top">
+      <a class="black-text" href="#multi-item-example" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i>prev</a>
+      <a class="black-text" href="#multi-item-example" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i>next</a>
+    </div>
+    &lt;!&ndash;/.Controls&ndash;&gt;
+
+    &lt;!&ndash;Slides&ndash;&gt;
+    <div class="carousel-inner" role="listbox">
+
+      &lt;!&ndash;First slide&ndash;&gt;
+      <div class="carousel-item active">
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+      </div>
+      &lt;!&ndash;/.First slide&ndash;&gt;
+
+      &lt;!&ndash;Second slide&ndash;&gt;
+      <div class="carousel-item">
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(53).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(25).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(47).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(26).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+      </div>
+      &lt;!&ndash;/.Second slide&ndash;&gt;
+
+      &lt;!&ndash;Third slide&ndash;&gt;
+      <div class="carousel-item">
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(64).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(59).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(63).jpg"
+                 alt="Card image cap">
+          </div>
+        </div>
+
+      </div>
+      &lt;!&ndash;/.Third slide&ndash;&gt;
+
+    </div>
+    &lt;!&ndash;/.Slides&ndash;&gt;
+
+  </div>-->
+  <!--/.Carousel Wrapper-->
+<!--
+  <h2> Comments for {{hotel.name}}</h2>
+  <div *ngIf="comments.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="comments.length > 0">
+    <table mat-table [dataSource]="comments" class="mat-elevation-z8">
+
+      &lt;!&ndash; Name Column &ndash;&gt;
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let comment"> {{comment.details}}</td>
+      </ng-container>
+
+      &lt;!&ndash; address Column &ndash;&gt;
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date</th>
+        <td mat-cell *matCellDef="let comment"> {{comment.date| date : "medium"}}</td>
+      </ng-container>
+
+
+      &lt;!&ndash; details Column &ndash;&gt;
+      <ng-container matColumnDef="Username">
+        <th mat-header-cell *matHeaderCellDef> Username</th>
+        <td mat-cell *matCellDef="let comment"> {{comment.commentUsername}}</td>
+        <td></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsComments"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsComments;"></tr>
+    </table>
+
+
+  </div>
+-->
+
+  <button mat-raised-button color="primary" (click)="scroll(target)">
+    See directions
+  </button>
+
+ <!-- <div *ngIf="comments.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+    <div *ngIf="comments.length > 0" >
+      <table class="comments" >
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Details</th>
+          <th >Rating</th>
+        </tr>
+        &lt;!&ndash;
+              <tr *ngFor="let obj of objects | orderBy : ObjFieldName: OrderByType">
+                *ngIf="comments.length == 0"
+                ObjFieldName: object field name you want to sort;
+
+                OrderByType: boolean; true: descending order; false: ascending;
+                | orderBy :'name':false"
+
+                SAU
+
+                input/list | sortBy:’asc|desc’: ‘property’
+                |orderBy:'desc':'name'"
+        &ndash;&gt;
+
+        <tr *ngFor="let comment of comments | orderBy :'rating':true">
+          <td>{{comment.commentUsername}}</td>
+          <td>{{comment.details}}</td>
+          <td>{{comment.date | date : "short"}}</td>
+          <td  *ngIf="comment.rating >0" ><ngb-rating [rate]="comment.rating"[readonly]=true></ngb-rating></td>
+        </tr>
+      </table>
+    </div>-->
+
+  <!--<button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->
+  <h2 *ngIf="isLoggedIn">Add new comment</h2>
+  <button *ngIf="isLoggedIn" (click)="toggle()">
+    {{commentsubmitted}}
+  </button>
+  <div class="form-group" *ngIf="show">
+    <label #target for="details">details:</label>
+    <input [(ngModel)]="commentadd.details" placeholder="details" name="details" class="form-control" id="details">
+
+    <ngb-rating [(rate)]="rating" [readonly]=false></ngb-rating>
+    <hr>
+    <pre>Rate: <b>{{rating}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(0)">Clear</button>
+    <button class="btn btn-success" (click)="onSubmit(rating)">Submit comment</button>
+  </div>
+
+  <h2> Comments for {{touristAttraction.name}}</h2>
+  <div class="container task-list">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">
+          <div class="post-heading">
+            <div class="pull-left image">
+              <!-- <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
+              <!--<img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>-->
+            </div>
+            <div class="pull-left meta">
+              <div class="title h5">
+                <img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>
+                <a href="#"><b>{{comment.commentUsername}}</b></a>
+                made a comment.
+              </div>
+              <h6 class="text-muted time">{{comment.date | date : "short"}}</h6>
+            </div>
+          </div>
+          <div class="post-description">
+            <div class="stats">
+              <td *ngIf="comment.rating >0">
+                <ngb-rating [rate]="comment.rating" [readonly]=true></ngb-rating>
+              </td>
+            </div>
+            <p>{{comment.details}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  <div #target class="map-frame" >
+    <h2>See the map directions to {{touristAttraction.name}}</h2>
+
+    <div id="map" ></div>
+  </div>
+  <br>
+  <canvas *ngIf="showModeratorBoard" id="lineChart" ></canvas>
+
+  <!--<p>-->
+    <!--Start editing to see some magic happen :)-->
+  <!--</p>-->
+
+
+  <!--<img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>-->
+
+  <!--<input type='file' (change)="onFileChanged($event)" multiple>-->
+  <!--<button class="btn btn-success" (click)="onUpload()">Create</button>-->
+
+
+
+
+
+
+
+<!--
+<div class="col-md-6">
+  <h2 class="text-center">Add Comment</h2>
+  <form>
+    <div class="form-group">
+      <label for="details">details:</label>
+      <input [(ngModel)]="comment.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+
+    <ngb-rating [(rate)]="rating"></ngb-rating>
+    <hr>
+    <pre>Rate: <b>{{rating}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(null)">Clear</button>
+
+    <button class="btn btn-success" (click)="onSubmit(rating)">Create</button>
+
+  </form>
+</div>
+-->
+
+</body>

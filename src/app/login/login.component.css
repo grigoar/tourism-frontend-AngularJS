@@ -1,0 +1,218 @@
+
+
+* {
+  /*
+  -May want to add "border-box for "box-sizing so padding does not affect width
+  -Reset margin and padding
+ */
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+}
+
+html,body {
+  /*
+    -Background color is #344a72
+  */
+  /*background:#344a72;*/
+
+  position: relative;
+  /*opacity: 0.5;*/
+  font-family: 'Raleway';
+  /*line-heigh:1.8;*/
+  min-height:100vh;
+  min-width:100%;
+  z-index: 1;
+
+}
+body .bg{
+  position: absolute;
+  z-index: -1;
+  background-image:url('../../assets/vacancy-background.png');
+  background-size:cover;
+  background-position: center center;
+  min-height:100%;
+  min-width:100%;
+  /*z-index: -1;*/
+  opacity:0.75;
+}
+.bg-form{
+  position: absolute;
+  background:white;
+  background-size:cover;
+  /*background-position: center center;*/
+  min-height:100%;
+  min-width:100%;
+  z-index:-1;
+  opacity: 0.75;
+  margin-left: -30px;
+  border-radius: 15px;
+
+}
+
+a {
+  /*
+  Underlined links are ugly :)
+ */
+  text-decoration:none;
+}
+
+#container {
+  /*
+  -Remember, margin: auto on left and right will center a block element
+  -I would also set a "max-width" for responsiveness
+  -May want to add some padding
+  */
+  display:block;
+  max-width:450px;
+  margin:auto;
+
+  padding:30px;
+
+
+}
+
+.form-wrap {
+  /*
+    This is the white area around the form and heading, etc
+  */
+  /*border:1px solid red;*/
+  /*background:white;*/
+
+  z-index:2;
+  position: relative;
+  padding-right:60px;
+
+  text-align: center
+}
+
+.form-wrap h1,
+.form-wrap p {
+  /*
+    May want to center these
+  */
+  text-align:center;
+
+}
+
+.form-wrap .form-group {
+  /*
+    Each label, input is wrapped in .form-group
+  */
+  margin-top:15px;
+}
+
+.form-wrap .form-group label {
+  /*
+    Label should be turned into a block element
+  */
+  display:block;
+  float:left;
+
+}
+
+.form-wrap .form-group input {
+  /*
+    Inputs should reach accross the .form-wrap 100% and have some padding
+  */
+  /*float:left;*/
+  width:100%;
+
+  padding:10px;
+
+
+  /*margin:5px 15px;*/
+  border:#333 solid 1px;
+  border-radius:5px;
+}
+
+.form-wrap button {
+  /*
+    Button should wrap accross 100% and display as block
+    Background color for button is #49c1a2
+  */
+  display:block;
+  width:100%;
+  background:#49c1a3;
+  border-radius:5px;
+  padding:10px;
+  margin-top:15px;
+  margin-top:15px;
+  cursor:pointer;
+}
+
+.form-wrap button:hover {
+  /*
+    Hover background color for button is #37a08e
+  */
+  background:#37a08e;
+}
+
+.form-wrap .bottom-text {
+  /*
+    Bottom text is smaller
+  */
+  font-size:12px;
+  margin-top:10px;
+}
+
+footer {
+  /*
+  Should be centered
+ */
+  text-align:center;
+  margin-top:10px;
+}
+
+footer a {
+  /*
+    Footer link color is #49c1a2
+  */
+  color: #0a8fc1;
+}
+footer a:hover {
+  /*
+    Footer link color is #49c1a2
+  */
+  color: #0eff00;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+
+  background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+input:valid {
+  border: 2px solid black;
+  background: lightgreen;
+}
+.p-viewer{
+  float: right;
+  margin-top: -32px;
+  position: relative;
+  z-index: 1;
+  cursor:pointer;
+}
+#press text:hover{
+  background:#37a08e;
+}
+/*
+.p-viewer{
+  float: right;
+  margin-top: -32px;
+  position: relative;
+  z-index: 1;
+  cursor:pointer;
+}
+
+.fa-eye {
+  color: #000;
+}
+
+
+*/

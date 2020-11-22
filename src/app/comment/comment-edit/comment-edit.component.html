@@ -1,0 +1,39 @@
+<div class="col-md-6">
+  <h2 class="text-center">Edit Comment</h2>
+    <form>
+      <div class="form-group">
+        <label for="details">details:</label>
+        <input [(ngModel)]="comment.details" placeholder="{{comment.details}}" name="details" class="form-control" id="details">
+      </div>
+    <div class="form-group">
+      <label for="date">date:</label>
+      <input [(ngModel)]="comment.date" placeholder="{{comment.date}}" name="date" class="form-control" id="date">
+    </div>
+      <div class="form-group">
+        <label for="event_id">event_id:</label>
+        <input [(ngModel)]="comment.event_id" placeholder="{{comment.event_id}}" name="event_id" class="form-control" id="event_id">
+      </div>
+      <div class="form-group">
+        <label for="hotel_id">hotel_id:</label>
+        <input [(ngModel)]="comment.hotel_id" placeholder="{{comment.hotel_id}}" name="hotel_id" class="form-control" id="hotel_id">
+      </div>
+      <div class="form-group">
+        <label for="restaurant_id">restaurant_id:</label>
+        <input [(ngModel)]="comment.restaurant_id" placeholder="{{comment.restaurant_id}}" name="restaurant_id" class="form-control" id="restaurant_id">
+      </div>
+      <div class="form-group">
+        <label for="touristAttraction_id">Country:</label>
+        <input [(ngModel)]="comment.touristAttraction_id" placeholder="{{comment.touristAttraction_id}}" name="touristAttraction_id" class="form-control" id="touristAttraction_id">
+      </div>
+      <div class="form-group">
+        <label for="user_id">user_id:</label>
+        <input [(ngModel)]="comment.user_id" placeholder="{{comment.user_id}}" name="user_id" class="form-control" id="user_id">
+      </div>
+      <div class="form-group">
+        <label for="commentUsername">commentUsername:</label>
+        <input [(ngModel)]="comment.commentUsername" placeholder="{{comment.commentUsername}}" name="commentUsername" class="form-control" id="commentUsername">
+      </div>
+    <button class="btn btn-success" (click)="onSubmit()">Update</button>
+
+  </form>
+</div>

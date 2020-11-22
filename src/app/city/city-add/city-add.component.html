@@ -1,0 +1,53 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add a new tourist destination</h2>
+  <form class="container-to-center">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="city.name" placeholder="{{city.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input [(ngModel)]="city.country" placeholder="{{city.country}}" name="country" class="form-control" id="country">
+    </div>
+    <div class="form-group">
+      <label for="latitude">Latitude:</label>
+      <input [(ngModel)]="city.lat" placeholder="{{city.lat}}" name="latitude" class="form-control" id="latitude">
+    </div>
+    <div class="form-group">
+      <label for="longitude">Longitude:</label>
+      <input [(ngModel)]="city.lon" placeholder="{{city.lon}}" name="longitude" class="form-control" id="longitude">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea type="text" [(ngModel)]="city.description" placeholder="{{city.description}}" name="description" class="form-control" id="description"></textarea>
+    </div>
+
+
+    <button class="btn btn-success" (click)="onSubmit()">Add a new tourist destination</button>
+
+
+  </form>
+</div>
+</body>
+
+<!--<div class="col-md-6">-->
+  <!--<h2 class="text-center">Add City</h2>-->
+    <!--<form>-->
+    <!--<div class="form-group">-->
+      <!--<label for="name">Name:</label>-->
+      <!--<input [(ngModel)]="city.name" placeholder="Name" name="name" class="form-control" id="name">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="country">Country:</label>-->
+      <!--<input [(ngModel)]="city.country" placeholder="Country" name="country" class="form-control" id="country">-->
+    <!--</div>-->
+
+      <!--&lt;!&ndash;<img [src]="url" height="200"> <br/>-->
+      <!--<input type='file' (change)="onSelectFile($event)">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <button class="btn btn-success" (click)="onSubmit()">Create</button>&ndash;&gt;-->
+
+  <!--</form>-->
+<!--</div>-->
+

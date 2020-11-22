@@ -1,0 +1,59 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Edit event</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="event.name" placeholder="{{event.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Email:</label>
+      <input [(ngModel)]="event.address" placeholder="{{event.address}}" name="address" class="form-control" id="address">
+    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="details">details:</label>-->
+      <!--<input [(ngModel)]="event.details" placeholder="{{event.details}}" name="details" class="form-control" id="details">-->
+    <!--</div>-->
+    <div class="form-group">
+      <label for="start_time">start_time:</label>
+      <input [(ngModel)]="event.start_time" placeholder="{{event.start_time}}" name="start_time" class="form-control" id="start_time">
+    </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">Country:</label>-->
+        <!--<input [(ngModel)]="event.city_id" placeholder="{{event.city_id}}" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="event.lat" placeholder="{{event.lat}}" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="event.lon" placeholder="{{event.lon}}" name="longitude" class="form-control" id="longitude">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" [(ngModel)]="event.details" placeholder="{{event.details}}" name="description" class="form-control" id="description"></textarea>
+      </div>
+
+      <button class="btn btn-success" (click)="editEvent()">Update</button>
+
+      <p>
+        Add more images for {{event.name}}
+      </p>
+
+      <img *ngFor='let url of imgURLs' [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+      <p>
+        {{event.name}} images
+      </p>
+
+    </form>
+</div>
+<div *ngFor='let imageevent of eventImages'>
+  <img src="data:image/png;base64,{{imageevent.pic}}" width="300" height="200" style="padding:10px"/>
+  <button mat-raised-button (click)="deleteEventImageById(imageevent.id)">Remove</button>
+</div>
+</body>

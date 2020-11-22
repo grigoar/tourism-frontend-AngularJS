@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  /*min-height:100%;*/
+  /*height:auto;*/
+  margin:0; padding:0;
+}
+
+/** {*/
+  /*!**/
+  /*-May want to add "border-box for "box-sizing so padding does not affect width*/
+  /*-Reset margin and padding*/
+ /**!*/
+  /*margin:0;*/
+  /*padding:0;*/
+/*}*/
+/*html, body {*/
+  /*box-sizing: border-box;*/
+  /*height: 100%;*/
+
+/*}*/
+
+/*body {*/
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+
+/*}*/
+
+/*.container {*/
+  /*margin: 0 0;*/
+
+  /*min-width:100vh;*/
+/*}*/

@@ -1,0 +1,300 @@
+<body>
+<div class="map-frame">
+ <!-- <h2> Points of interest from {{city.name}}</h2>
+-->
+  <div id="map" ></div>
+
+</div>
+<br>
+
+
+
+
+
+<div class="container">
+  <div id="moderator" *ngIf="showModeratorBoard">
+    <h2>Moderator and admin control panel</h2>
+    <button mat-raised-button color="accent" (click)="addCity()">Add new vacation destination</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="removeCity(city.id)">Remove current vacation destination</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="editCity()">Edit current vacantion destination</button>
+    <h5>
+      Add more images for {{city.name}}
+    </h5>
+
+
+    <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+
+    <input type='file' (change)="onFileChanged($event)" multiple>
+    <button class="btn btn-success" (click)="onUpload()">Create</button>
+    <!--<p>-->
+      <!--{{city.name}} images-->
+    <!--</p>-->
+  </div>
+
+  <div>
+    <h2>Points of attraction in {{city.name}}</h2>
+    <br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{city.description}}</p>
+    <!--<p><label>id</label> {{city.id}} </p>
+    <p><label>name</label> {{city.name}} </p>
+    <p><label>country</label> {{city.country}} </p>
+    <p><label>country</label> {{city.lat}} </p>-->
+    <img *ngFor='let imagecity of cityImages'  src="data:image/png;base64,{{imagecity.pic}}" width="300" height="200" style="padding:10px"/>
+  </div>
+  <h2> Hotels in {{city.name}}
+  <button class="buttons-moderator" *ngIf="showModeratorBoard" color="accent" mat-raised-button (click)="addNewHotel()">Add new hotel</button></h2>
+  <div *ngIf="hotels.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="hotels.length > 0">
+    <table mat-table [dataSource]="hotels" class="mat-elevation-z8" style="background: #ff6100">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.name}}</td>
+      </ng-container>
+
+      <!-- address Column -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.address}}</td>
+      </ng-container>
+
+      <!-- details Column -->
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.details}}</td>
+      </ng-container>
+
+      <!-- Contact Column -->
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef> Contact</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.contact}}</td>
+      </ng-container>
+      <!-- Website Column -->
+      <ng-container matColumnDef="Website">
+        <th mat-header-cell *matHeaderCellDef> Website</th>
+        <td mat-cell *matCellDef="let hotel"> {{hotel.website}}</td>
+      </ng-container>
+      <ng-container matColumnDef="HotelPage">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let city">
+          <button mat-raised-button color="primary" (click)="viewDetailsHotel(city.id)">Details</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  </div>
+  <h2> Restaurants in {{city.name}}
+    <button class="buttons-moderator" color="accent" mat-raised-button (click)="addNewRestaurant()" *ngIf="showModeratorBoard">Add new restaurant</button></h2>
+  <div *ngIf="restaurants.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="restaurants.length > 0">
+    <!--"restaurants| orderBy :'rating':true"-->
+    <table mat-table [dataSource]="restaurants" class="mat-elevation-z8"style="background: #0057ff" >
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let restaurant"> {{restaurant.name}}</td>
+      </ng-container>
+
+      <!-- address Column -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address</th>
+        <td mat-cell *matCellDef="let restaurant"> {{restaurant.address}}</td>
+      </ng-container>
+
+      <!-- details Column -->
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let restaurant"> {{restaurant.details}}</td>
+      </ng-container>
+
+      <!-- Contact Column -->
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef> Contact</th>
+        <td mat-cell *matCellDef="let restaurant"> {{restaurant.contact}}</td>
+      </ng-container>
+      <!-- Website Column -->
+      <ng-container matColumnDef="Website">
+        <th mat-header-cell *matHeaderCellDef> Website</th>
+        <td mat-cell *matCellDef="let restaurant"> {{restaurant.website}}</td>
+      </ng-container>
+      <ng-container matColumnDef="RestaurantPage">
+        <th mat-header-cell *matHeaderCellDef> Restaurant details</th>
+        <td mat-cell *matCellDef="let restaurant">
+          <button mat-raised-button color="primary" (click)="viewDetailsRestaurant(restaurant.id)">Details</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsRestaurants"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsRestaurants;"></tr>
+    </table>
+
+
+  </div>
+
+
+<h2> Tourist Attractions in {{city.name}}
+  <button class="buttons-moderator" color="accent" mat-raised-button (click)="addNewTouristAttraction()" *ngIf="showModeratorBoard">Add new tourist attraction</button></h2>
+<div *ngIf="touristAttractions.length == 0">
+  <div class="alert alert-info" role="alert">Loading...</div>
+</div>
+
+<div *ngIf="touristAttractions.length > 0">
+  <table mat-table [dataSource]="touristAttractions" class="mat-elevation-z8"style="background: #118e4e">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.name}}</td>
+    </ng-container>
+
+    <!-- address Column -->
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.address}}</td>
+    </ng-container>
+
+    <!-- details Column -->
+    <ng-container matColumnDef="Details">
+      <th mat-header-cell *matHeaderCellDef> Details</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.details}}</td>
+    </ng-container>
+    <ng-container matColumnDef="TouristAttractionPage">
+      <th mat-header-cell *matHeaderCellDef> TouristAttraction details</th>
+      <td mat-cell *matCellDef="let touristAttraction">
+        <button mat-raised-button color="primary" (click)="viewDetailsTouristAttraction(touristAttraction.id)">Details</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsTouristAttractions"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsTouristAttractions;"></tr>
+  </table>
+
+
+</div>
+  <h2> Events in {{city.name}}
+    <button class="buttons-moderator" color="accent" mat-raised-button (click)="addNewEvent()" *ngIf="showModeratorBoard">Add new event</button></h2>
+  <div *ngIf="events.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="events.length > 0">
+    <table mat-table [dataSource]="events" class="mat-elevation-z8"style="background: #8238a1">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let event"> {{event.name}}</td>
+      </ng-container>
+
+
+
+      <!-- address Column -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address</th>
+        <td mat-cell *matCellDef="let event"> {{event.address}}</td>
+      </ng-container>
+
+      <!-- details Column -->
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let event"> {{event.details}}</td>
+      </ng-container>
+      <!-- address Sart Time-->
+      <ng-container matColumnDef="StartTime">
+        <th mat-header-cell *matHeaderCellDef> Start Time</th>
+        <td mat-cell *matCellDef="let event"> {{event.start_time| date : 'MMM d, y, h:mm:ss a':'+0'}}</td>
+      <!--  {{event.start_time| date : "fullDate"}} https://www.w3schools.com/angular/ng_filter_date.asp-->
+      </ng-container>
+
+      <ng-container matColumnDef="Going">
+        <th mat-header-cell *matHeaderCellDef> Going</th>
+        <td mat-cell *matCellDef="let event"> {{event.going}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Maybe">
+        <th mat-header-cell *matHeaderCellDef> Maybe Going</th>
+        <td mat-cell *matCellDef="let event"> {{event.maybe}}</td>
+      </ng-container>
+      <ng-container matColumnDef="EventPage">
+        <th mat-header-cell *matHeaderCellDef> Event details</th>
+        <td mat-cell *matCellDef="let event">
+          <button mat-raised-button color="primary" (click)="viewDetailsEvent(event.id)">Details</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsEvents"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsEvents;"></tr>
+    </table>
+
+
+  </div>
+
+<!--  &lt;!&ndash; Pentru attractiile turistice din oras &ndash;&gt;
+</div>
+<h2> Tourist Atrractions in {{city.name}}</h2>
+<div *ngtouristAttraction-pageaction-pageouristAttraction-pageaction-pagelass="alert alert-info" role="alert">Loading...</div>
+</div>
+
+<div *ngIf="touristAttractions.length > 0">
+  <table mat-table [dataSource]="touristAttractions" class="mat-elevation-z8">
+
+    &lt;!&ndash; Name Column &ndash;&gt;
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.name}}</td>
+    </ng-container>
+
+    &lt;!&ndash; address Column &ndash;&gt;
+    <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.address}}</td>
+    </ng-container>
+
+    &lt;!&ndash; details Column &ndash;&gt;
+    <ng-container matColumnDef="Details">
+      <th mat-header-cell *matHeaderCellDef> Details</th>
+      <td mat-cell *matCellDef="let touristAttraction"> {{touristAttraction.details}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsTouristAttractions"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsTouristAttractions;"></tr>
+  </table>
+
+
+</div>-->
+  <!--<div class="container-images">-->
+    <!--&lt;!&ndash; add images&ndash;&gt;-->
+    <!--<h3>Image Uploading Module</h3>-->
+    <!---->
+    <!--<p>-->
+      <!--Start editing to see some magic happen :)-->
+    <!--</p>-->
+
+
+    <!--<img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>-->
+
+    <!--<input type='file' (change)="onFileChanged($event)" multiple>-->
+    <!--<button class="btn btn-success" (click)="onUpload()">Create</button>-->
+  <!---->
+ <!---->
+  <!--</div>-->
+</div>
+
+</body>

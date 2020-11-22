@@ -1,0 +1,76 @@
+<body>
+<div class="bg"></div>
+<div id="container">
+
+  <div class="form-wrap">
+    <div class="bg-form"></div>
+    <h1>Sign Up</h1>
+    <p>It's free and only takes a minute</p>
+    <br>
+    <p style="color: red">{{errorMessage }}</p>
+    <form >
+
+    <div class="form-group">
+      <label for="name">Name*:</label>
+      <input [(ngModel)]="user.name" placeholder="Name" name="name" id="name" required>
+      <span id="error"></span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email*:</label>
+      <input type="email" [(ngModel)]="user.email" placeholder="Email" name="email" id="email" required>
+    </div>
+      <div class="form-group">
+        <label for="username">Username*:</label>
+        <input [(ngModel)]="user.username" placeholder="Username" name="Username" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password*:</label>
+        <input type="password" [(ngModel)]="user.password" placeholder="Password (minimum 6 characters)"name="Password" id="password" required
+               minlength="6" >
+
+        <!--<div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 6 characters
+        </div>-->
+        <!--<span
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && password.invalid"
+        >
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </span>-->
+      </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input [(ngModel)]="user.city" placeholder="City" name="city" id="city" >
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input [(ngModel)]="user.country" placeholder="Country" name="country" id="country">
+    </div>
+
+    <div class="form-group">
+      <label for="telephone">Telephone:</label>
+      <input [(ngModel)]="user.telephone" placeholder="Telephone" name="telephone" id="telephone">
+    </div>
+
+
+    <button class="btn" (click)="onSubmit()">Sign Up</button>
+
+      <p class="bottom-text">
+        By clicking the Sign Up button, you agree to our
+        <a href="#">Terms & Conditions</a> and
+        <a href="#">Privacy Policy</a>
+      </p>
+    </form>
+</div>
+  <footer>
+    <p>Already have an account? <a href="#">Login Here</a></p>
+  </footer>
+</div>
+</body>
+
+

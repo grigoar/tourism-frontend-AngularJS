@@ -1,0 +1,61 @@
+<body>
+<div id="container">
+<div class="map-container" xmlns:height="http://www.w3.org/1999/xhtml">
+ <!-- <button mat-raised-button (click)="onMap()">CEVA</button>-->
+
+  <div class="map-frame" >
+    <h2 id="title">Pick a vacation destination from the map</h2>
+
+    <div id="map" ></div>
+
+  </div>
+
+</div>
+<br>
+<br><br>
+<button *ngIf="showAdminBoard" mat-raised-button (click)="onMap()">Go to the list of vacation destinations</button>
+</div>
+</body>
+<!--  <div *ngIf="cities.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="cities.length > 0">
+    <table mat-table [dataSource]="cities" class="mat-elevation-z8">
+
+      &lt;!&ndash; Name Column &ndash;&gt;
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let city"> {{city.name}}</td>
+      </ng-container>
+
+      &lt;!&ndash; Telephone Column &ndash;&gt;
+      <ng-container matColumnDef="Country">
+        <th mat-header-cell *matHeaderCellDef> Country</th>
+        <td mat-cell *matCellDef="let city"> <img src="assets/images/{{city.name}}/{{city.name}}-generic.jpg" layout-fill></td>
+        &lt;!&ndash; <img src="img_lights.jpg" alt="Lights" onclick="myFunction(this);">&ndash;&gt;
+
+      </ng-container>
+
+      &lt;!&ndash; Details Column &ndash;&gt;
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td mat-cell *matCellDef="let city">
+          <button mat-raised-button (click)="viewDetails(city.id)">Details</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Lat">
+        <th mat-header-cell *matHeaderCellDef> Latitude</th>
+        <td mat-cell *matCellDef="let city"> {{city.lat}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Lon">
+        <th mat-header-cell *matHeaderCellDef> Longitude</th>
+        <td mat-cell *matCellDef="let city"> {{city.lon}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let column; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>-->

@@ -1,0 +1,34 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add a new tourist attraction</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="touristAttraction.name" placeholder="Name" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input [(ngModel)]="touristAttraction.address" placeholder="Address" name="address" class="form-control" id="address">
+    </div>
+    <div class="form-group">
+      <label for="details">details:</label>
+      <input [(ngModel)]="touristAttraction.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">Country:</label>-->
+        <!--<input [(ngModel)]="touristAttraction.city_id" placeholder="city_id" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="touristAttraction.lat" placeholder="46.3432445" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="touristAttraction.lon" placeholder="25.3432434" name="longitude" class="form-control" id="longitude">
+      </div>
+      <br>
+    <button class="btn btn-success" (click)="onSubmit()">Create</button>
+
+  </form>
+</div>
+</body>

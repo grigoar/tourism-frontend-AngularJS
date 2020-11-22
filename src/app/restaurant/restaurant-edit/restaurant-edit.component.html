@@ -1,0 +1,66 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Edit restaurant</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="restaurant.name" placeholder="{{restaurant.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input [(ngModel)]="restaurant.address" placeholder="{{restaurant.address}}" name="address" class="form-control" id="address">
+   </div>
+    <!--<div class="form-group">-->
+      <!--<label for="details">details:</label>-->
+      <!--<input [(ngModel)]="restaurant.details" placeholder="{{restaurant.details}}" name="details" class="form-control" id="details">-->
+    <!--</div>-->
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input [(ngModel)]="restaurant.contact" placeholder="{{restaurant.contact}}" name="contact" class="form-control" id="contact">
+    </div>
+      <div class="form-group">
+        <label for="website">Website:</label>
+        <input [(ngModel)]="restaurant.website" placeholder="{{restaurant.website}}" name="website" class="form-control" id="website">
+      </div>
+
+      <div class="form-group">
+        <label for="tables">Number of tables:</label>
+        <input [(ngModel)]="restaurant.tables" placeholder="{{restaurant.tables}}" name="tables" class="form-control" id="tables">
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">City_id:</label>-->
+        <!--<input [(ngModel)]="restaurant.city_id" placeholder="{{restaurant.city_id}}" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="restaurant.lat" placeholder="{{restaurant.lat}}" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="restaurant.lon" placeholder="{{restaurant.lon}}" name="longitude" class="form-control" id="longitude">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" [(ngModel)]="restaurant.details" placeholder="{{restaurant.details}}" name="description" class="form-control" id="description"></textarea>
+      </div>
+    <button class="btn btn-success" (click)="editRestaurant()">Update</button>
+
+      <p>
+        Add more images for {{restaurant.name}}
+      </p>
+
+      <img *ngFor='let url of imgURLs' [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+      <p>
+        {{restaurant.name}} images
+      </p>
+    </form>
+</div>
+<div *ngFor='let imagerestaurant of restaurantImages'>
+  <img src="data:image/png;base64,{{imagerestaurant.pic}}" width="300" height="200" style="padding:10px"/>
+  <button mat-raised-button (click)="deleteRestaurantImageById(imagerestaurant.id)">Remove</button>
+</div>
+</body>

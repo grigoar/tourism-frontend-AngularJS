@@ -1,0 +1,29 @@
+#map { height: 300px;
+  width: 100%;
+
+}
+.map-frame{
+  padding: 0 10px;
+}
+body {
+  position: absolute;
+  z-index: -1;
+  background-color: #a2d0e2;
+  /*background-image:url('../../../assets/vacancy-background.png');
+  background-size:cover;
+  background-position: center center;*/
+  min-height:100%;
+  min-width:100%;
+  /*z-index: -1;*/
+  opacity:1;
+}
+#moderator{
+  padding:10px 10px;
+  border:3px blueviolet solid;
+  border-radius: 5px;
+
+}
+.buttons-moderator{
+  border:3px blueviolet solid;
+  border-radius: 5px;
+}

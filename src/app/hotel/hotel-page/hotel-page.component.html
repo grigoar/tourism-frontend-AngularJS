@@ -1,0 +1,255 @@
+<body>
+<div class="container">
+  <div>
+    <h2>Welcome to {{hotel.name}}</h2><br>
+    <img *ngFor='let imageHotel of hotelImages' src="data:image/png;base64,{{imageHotel.pic}}" width="300"
+         height="200"/>
+  </div>
+  <div>
+
+
+
+    <p><label></label> {{hotel.details}} </p>
+    <div id="moderator" *ngIf="showModeratorBoard">
+      <h2>Moderator and admin panel</h2>
+      <button color="accent" mat-raised-button (click)="editHotel()">Edit current hotel</button>
+      <br>
+      <br>
+      <button color="accent" mat-raised-button (click)="removeHotel(hotel.id)">Remove current hotel</button>
+      <br>
+      <br>
+
+      <button mat-raised-button color="accent" (click)="addHotel()">Add a new hotel</button>
+
+      <h5>
+        Add more images for {{hotel.name}}
+      </h5>
+      <img *ngFor='let url of imgURLs'  [src]="url" height="200"> <br/>
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+    </div>
+  </div>
+
+  <ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+   <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+  </span>
+  </ng-template>
+
+
+  <ngb-rating [(rate)]="hotel.ratingavr" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+
+  <hr>
+  <pre>Rating: <b>{{hotel.ratingavr}}</b></pre>
+
+
+  <!-- <button (click)="toggleMap()" >
+     {{showmapbutton}}
+   </button>-->
+  <!--[hidden]="!showmap"-->
+  <button color="primary" mat-raised-button (click)="scroll(target)">
+    See directions
+  </button>
+  <h6 *ngIf="showModeratorBoard">Filter by date</h6>
+  <div *ngIf="showModeratorBoard">
+  <label for="startDate">start_time:</label>
+  <input type="date" [(ngModel)]="startDate" name="start_time" class="form-control" id="startDate">
+  <label for="endDate">end_time:</label>
+  <input type="date" [(ngModel)]="endDate" name="endDate" class="form-control" id="endDate">
+    <button color="primary" mat-raised-button (click)="filterByDate(startDate,endDate)">Filter</button>
+  </div>
+  <h4 *ngIf="showModeratorBoard">All reservations for this hotel</h4>
+  <table *ngIf="showModeratorBoard" class="allreservations" >
+    <tr>
+      <th>Name booked</th>
+      <th>Telephone</th>
+      <th>Details</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let reservation of userHotelReservationsByDate">
+      <td>{{reservation.book_name}}</td>
+      <td>{{reservation.user.telephone}}</td>
+      <td class="details">{{reservation.details}}</td>
+      <td>{{reservation.reservation_start}}</td>
+      <td>{{reservation.reservation_end}}</td>
+      <td><button color="accent" mat-raised-button (click)="editReservation(reservation.id)">Edit</button></td>
+      <td><button color="accent" mat-raised-button (click)="removeReservation(reservation.id)">Remove</button></td>
+    </tr>
+  </table>
+
+  <h4 *ngIf="isLoggedIn">Your reservations for this hotel</h4>
+  <table *ngIf="isLoggedIn" class="alluserreservations" >
+    <tr>
+      <th>Name booked</th>
+      <th>Telephone</th>
+      <th>Details</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let reservation of userHotelReservations">
+      <td>
+
+          {{reservation.book_name}}
+        </td>
+      <td>{{reservation.user.telephone}}</td>
+      <td class="details">{{reservation.details}}</td>
+      <td>{{reservation.reservation_start}}</td>
+      <td>{{reservation.reservation_end}}</td>
+      <td><button color="accent" mat-raised-button (click)="editReservation(reservation.id)">Edit</button></td>
+      <td><button color="accent" mat-raised-button (click)="removeReservation(reservation.id)">Remove</button></td>
+    </tr>
+  </table>
+
+  <h5 *ngIf="isLoggedIn">Add a new reservation</h5>
+  <button color="primary" mat-raised-button *ngIf="isLoggedIn" (click)="toggleReservation()">
+    {{showHideReservationButton}}
+  </button>
+  <div class="form-group" *ngIf="showReservation">
+    <label #target for="book_name">Booking name:</label>
+    <input [(ngModel)]="reservationAdd.book_name" placeholder="book_name" name="book_name" class="form-control" id="book_name">
+    <label #target for="reservationdetails">Reservation details:</label>
+    <input [(ngModel)]="reservationAdd.details" placeholder="reservationdetails" name="details" class="form-control" id="reservationdetails">
+    <div class="form-group">
+      <label for="reservation_start">Reservation start time:</label>
+      <input type="date" [(ngModel)]="reservationAdd.reservation_start" name="reservation_start" class="form-control" id="reservation_start" >
+    </div>
+    <div class="form-group">
+      <label for="reservation_end">Reservation end date:</label>
+      <input type="date" [(ngModel)]="reservationAdd.reservation_end" name="reservation_end" class="form-control" id="reservation_end"  >
+
+    </div>
+    <button class="btn btn-success" (click)="onAddReservation()">Submit the new reservation</button>
+
+  </div>
+  <br>
+  <h2> Comments for {{hotel.name}}</h2>
+
+  <!-- <div *ngIf="comments.length == 0">
+     <div class="alert alert-info" role="alert">Loading...</div>
+   </div>
+
+     <div *ngIf="comments.length > 0" >
+       <table class="comments" >
+         <tr>
+           <th>Name</th>
+           <th>Phone Number</th>
+           <th>Details</th>
+           <th >Rating</th>
+         </tr>
+         &lt;!&ndash;
+               <tr *ngFor="let obj of objects | orderBy : ObjFieldName: OrderByType">
+                 *ngIf="comments.length == 0"
+                 ObjFieldName: object field name you want to sort;
+
+                 OrderByType: boolean; true: descending order; false: ascending;
+                 | orderBy :'name':false"
+
+                 SAU
+
+                 input/list | sortBy:’asc|desc’: ‘property’
+                 |orderBy:'desc':'name'"
+         &ndash;&gt;
+
+         <tr *ngFor="let comment of comments | orderBy :'rating':true">
+           <td>{{comment.commentUsername}}</td>
+           <td>{{comment.details}}</td>
+           <td>{{comment.date | date : "short"}}</td>
+           <td  *ngIf="comment.rating >0"><ngb-rating [rate]="comment.rating"[readonly]=true></ngb-rating></td>
+         </tr>
+       </table>
+     </div>-->
+
+  <!--<button mat-raised-button (click)="addComment(hotel.id)">Add new comment</button>-->
+  <!-- <button (click)="hideComment(); scroll(target)" >Add new comment</button>-->
+  <br>
+  <button color="primary" mat-raised-button *ngIf="isLoggedIn" (click)="toggle()">
+    {{commentsubmitted}}
+  </button>
+  <div class="form-group" *ngIf="show">
+    <label #target for="details">details:</label>
+    <input [(ngModel)]="commentadd.details" placeholder="details" name="details" class="form-control" id="details">
+
+    <ngb-rating [(rate)]="rating" [readonly]=false></ngb-rating>
+    <hr>
+    <pre>Rating: <b>{{rating}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(0)">Clear</button>
+    <button class="btn btn-success" (click)="onSubmit(rating)">Submit comment</button>
+  </div>
+
+</div>
+
+<br>
+<!--
+<div class="col-md-6">
+  <h2 class="text-center">Add Comment</h2>
+  <form>
+    <div class="form-group">
+      <label for="details">details:</label>
+      <input [(ngModel)]="comment.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+
+    <ngb-rating [(rate)]="rating"></ngb-rating>
+    <hr>
+    <pre>Rate: <b>{{rating}}</b></pre>
+    <button class="btn btn-sm btn-outline-primary mr-2" (click)="setValue(null)">Clear</button>
+
+    <button class="btn btn-success" (click)="onSubmit(rating)">Create</button>
+
+  </form>
+</div>
+-->
+
+<!-- comments varianta 2-->
+
+<div class="container task-list">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">
+        <div class="post-heading">
+          <div class="pull-left image">
+            <!-- <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
+            <!--<img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>-->
+          </div>
+          <div class="pull-left meta">
+            <div class="title h5">
+              <img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>
+              <a href="#"><b>{{comment.commentUsername}}</b></a>
+              made a comment.
+            </div>
+            <h6 class="text-muted time">{{comment.date | date : "short"}}</h6>
+          </div>
+        </div>
+        <div class="post-description">
+          <div class="stats">
+            <td *ngIf="comment.rating >0">
+              <ngb-rating [rate]="comment.rating" [readonly]=true></ngb-rating>
+            </td>
+          </div>
+          <p>{{comment.details}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #target class="map-frame">
+  <h2>See the map directions to {{hotel.name}}</h2>
+
+  <div id="map"></div>
+
+  <br>
+  <canvas *ngIf="showModeratorBoard" id="lineChart"></canvas>
+
+
+</div>
+
+
+
+</body>
+
+

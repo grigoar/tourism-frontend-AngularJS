@@ -1,0 +1,31 @@
+<body>
+
+<div class="container">
+  <div>
+    <h2>{{user.name}} Profile</h2>
+    <img src="data:image/jpeg;base64,{{userImage.pic}}" width="200" height="200"/>
+    <p><label>Name:</label> {{user.name}} </p>
+    <p><label>Email:</label> {{user.email}} </p>
+    <p><label>City:</label> {{user.city}} </p>
+    <p><label>Country:</label> {{user.country}} </p>
+    <p><label>Username:</label> {{user.username}} </p>
+   <!-- <p><label>Password:</label> {{user.password}} </p>-->
+    <p><label>Telephone:</label> {{user.telephone}} </p>
+    <!--<p><label>Telephone:</label> {{user.userProfileImage}} </p>-->
+    <!--<p><label>Telephone:</label> {{user.userComments}} </p>-->
+    <!--<p><label>Telephone:</label> {{user.userReservations}} </p>-->
+
+   <!-- <p><label>Type:</label> {{roles}} </p>-->
+    <div *ngFor="let role of roles">
+        <p><label>Role:</label> {{role}} </p>
+
+    </div>
+
+  </div>
+  <button mat-raised-button color="accent" (click)="editUserDetails(user.id)">Update this account</button>
+  <br><br>
+
+  <!--<button *ngIf="showAdminBoard" color="accent" mat-raised-button (click)="addModeratorRole()">Make account moderator</button>-->
+  <!--<button *ngIf="showAdminBoard" color="accent" mat-raised-button (click)="removeModeratorRole()">Remove account moderator role</button>-->
+</div>
+</body>

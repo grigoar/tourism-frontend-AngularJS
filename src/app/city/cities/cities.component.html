@@ -1,0 +1,100 @@
+<html>
+<body>
+<div class="container">
+  <h2> Cities to visit
+  <button class="buttons-moderator" mat-raised-button color="accent"  (click)="addCity()" *ngIf="showModeratorBoard">Add a new tourist destination</button></h2>
+  <div *ngIf="cities.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="cities.length > 0">
+    <table mat-table [dataSource]="cities" class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container class="squares" matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td class="table-squares" mat-cell *matCellDef="let city"> {{city.name}}</td>
+      </ng-container>
+
+      <!-- Image Column -->
+      <ng-container class="squares" matColumnDef="Image">
+        <th mat-header-cell *matHeaderCellDef> Image</th>
+        <td class="table-squares" mat-cell *matCellDef="let city"><img src="data:image/jpeg;base64,{{city.pic}}" width="300" height="200"/> </td>
+        <!--<td mat-cell *matCellDef="let city"> <img src="assets/images/{{city.name}}/{{city.name}}-generic.jpg"></td>-->
+        <!--<img src="data:image/jpeg;base64,{{comment.pic}}" width="30" height="30" class="img-circle avatar"/>-->
+        <!-- <img src="img_lights.jpg" alt="Lights" onclick="myFunction(this);">-->
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container class="squares" matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td class="table-squares" mat-cell *matCellDef="let city"> {{city.description}}</td>
+      </ng-container>
+
+      <!-- Country Column -->
+      <ng-container class="squares" matColumnDef="Country">
+        <th mat-header-cell *matHeaderCellDef> Country</th>
+        <td class="table-squares" mat-cell *matCellDef="let city"> {{city.country}}</td>
+      </ng-container>
+      <!-- Details Column -->
+      <ng-container class="squares" matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef> Details</th>
+        <td class="table-squares" mat-cell *matCellDef="let city">
+          <button color="primary"mat-raised-button (click)="viewDetails(city.id)">Details</button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>
+</body>
+</html>
+<!--
+<html>
+
+<body>
+
+<h2>Select a tourist destination</h2>
+ <button mat-raised-button color="accent"  (click)="addCity()">Add city</button>
+
+&lt;!&ndash;<img [src]="url" height="200"> <br/>
+<input type='file' (change)="onSelectFile($event)">&ndash;&gt;
+<div class="gallery">
+  <h2>Cluj-Napoca</h2>
+  <a (click)="viewDetails(1)">
+    <img src="assets/images/Cluj-Napoca/Cluj-Napoca-generic.jpg" alt="Cluj-Napoca" width="900" height="600">
+  </a>
+  <div class="desc">Cluj-Napoca, a city in northwestern Romania, is the unofficial capital of the Transylvania region. It's home to universities, vibrant nightlife and landmarks dating to Saxon and Hungarian rule. Surrounding its central square, Piața Unirii, is the Gothic-style St. Michael's Church and the dramatic Matthias Corvinus Statue of the 15th-century king. The baroque-era Bánffy Palace is now a museum showcasing Romanian art. </div>
+</div>
+
+<div class="gallery">
+  <h2>Bucuresti</h2>
+  <a (click)="viewDetails(2)">
+    <img src="assets/images/Bucuresti/Bucuresti-generic.jpg" alt="Bucuresti" width="900" height="600">
+  </a>
+  <div class="desc">Bucharest, in southern Romania, is the country's capital and commercial center. Its iconic landmark is the massive, communist-era Palatul Parlamentului government building, which has 1,100 rooms. Nearby, the historic Lipscani district is home to an energetic nightlife scene as well as tiny Eastern Orthodox Stavropoleos Church and 15th-century Curtea Veche Palace, where Prince Vlad III (“The Impaler”) once ruled.</div>
+</div>
+
+<div class="gallery">
+  <h2>Sibiu</h2>
+  <a (click)="viewDetails(3)">
+    <img src="assets/images/Sibiu/Sibiu-generic.jpg" alt="Sibiu" width="900" height="600">
+  </a>
+  <div class="desc">Sibiu is a city in Transylvania, central Romania. It’s known for Germanic architecture in its old town, the legacy of 12th-century Saxon settlers. Around the city are the remains of medieval walls and towers, including the 13th-century Council Tower. In the upper town, Brukenthal Palace now houses the Brukenthal National Museum, with European paintings. The nearby Evangelical Cathedral has gravestones in its walls.</div>
+</div>
+
+<div class="gallery">
+  <h2>Paris</h2>
+  <a (click)="viewDetails(4)">
+    <img src="assets/images/Paris/Paris-generic.jpg" alt="Mountains" width="900" height="600">
+  </a>
+  <div class="desc">Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré.</div>
+</div>
+
+</body>
+</html>
+-->

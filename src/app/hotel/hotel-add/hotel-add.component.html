@@ -1,0 +1,45 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add a new hotel</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="hotel.name" placeholder="Name" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Adress:</label>
+      <input [(ngModel)]="hotel.address" placeholder="Address" name="address" class="form-control" id="address">
+    </div>
+    <div class="form-group">
+      <label for="details">Details:</label>
+      <input [(ngModel)]="hotel.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input [(ngModel)]="hotel.contact" placeholder="contact" name="contact" class="form-control" id="contact">
+    </div>
+      <div class="form-group">
+      <label for="website">Website:</label>
+      <input [(ngModel)]="hotel.website" placeholder="website" name="website" class="form-control" id="website">
+    </div>
+      <div class="form-group">
+        <label for="rooms">Number of rooms:</label>
+        <input [(ngModel)]="hotel.rooms" placeholder="33" name="rooms" class="form-control" id="rooms">
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">City:</label>-->
+        <!--<input [(ngModel)]="hotel.city_id" placeholder="city_id" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="hotel.lat" placeholder="46.3434324" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="hotel.lon" placeholder="25.3434324" name="longitude" class="form-control" id="longitude">
+      </div>
+    <button class="btn btn-success" (click)="onSubmit()">Create</button>
+
+  </form>
+</div>
+</body>

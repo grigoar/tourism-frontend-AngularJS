@@ -1,0 +1,66 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Edit current hotel {{hotel.name}}</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="hotel.name" placeholder="{{hotel.name}}" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input [(ngModel)]="hotel.address" placeholder="{{hotel.address}}" name="address" class="form-control" id="address">
+    </div>
+    <!--<div class="form-group">-->
+      <!--<label for="details">details:</label>-->
+      <!--<input [(ngModel)]="hotel.details" placeholder="{{hotel.details}}" name="details" class="form-control" id="details">-->
+    <!--</div>-->
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input [(ngModel)]="hotel.contact" placeholder="{{hotel.contact}}" name="contact" class="form-control" id="contact">
+    </div>
+      <div class="form-group">
+        <label for="website">website:</label>
+        <input [(ngModel)]="hotel.website" placeholder="{{hotel.website}}" name="website" class="form-control" id="website">
+      </div>
+      <div class="form-group">
+        <label for="rooms">Number of rooms:</label>
+        <input [(ngModel)]="hotel.rooms" placeholder="{{hotel.rooms}}" name="rooms" class="form-control" id="rooms">
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">Country:</label>-->
+        <!--<input [(ngModel)]="hotel.city_id" placeholder="{{hotel.city_id}}" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="hotel.lat" placeholder="{{hotel.lat}}" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="hotel.lon" placeholder="{{hotel.lon}}" name="longitude" class="form-control" id="longitude">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" [(ngModel)]="hotel.details" placeholder="{{hotel.details}}" name="description" class="form-control" id="description"></textarea>
+      </div>
+    <button class="btn btn-success" (click)="editHotel()">Update</button>
+
+
+      <p>
+        Add more images for {{hotel.name}}
+      </p>
+
+      <img *ngFor='let url of imgURLs' [src]="url" height="200"> <br/>
+
+      <input type='file' (change)="onFileChanged($event)" multiple>
+      <button class="btn btn-success" (click)="onUpload()">Create</button>
+      <p>
+        {{hotel.name}} images
+      </p>
+
+    </form>
+</div>
+<div *ngFor='let imagehotel of hotelImages'>
+  <img src="data:image/png;base64,{{imagehotel.pic}}" width="300" height="200" style="padding:10px"/>
+  <button mat-raised-button (click)="deleteHotelImageById(imagehotel.id)">Remove</button>
+</div>
+</body>

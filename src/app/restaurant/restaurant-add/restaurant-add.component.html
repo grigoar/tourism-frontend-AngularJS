@@ -1,0 +1,45 @@
+<body>
+<div class="col-md-6">
+  <h2 class="text-center">Add Restaurant</h2>
+    <form>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="restaurant.name" placeholder="Name" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input [(ngModel)]="restaurant.address" placeholder="Address" name="address" class="form-control" id="address">
+    </div>
+    <div class="form-group">
+      <label for="details">Details:</label>
+      <input [(ngModel)]="restaurant.details" placeholder="details" name="details" class="form-control" id="details">
+    </div>
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input [(ngModel)]="restaurant.contact" placeholder="contact" name="contact" class="form-control" id="contact">
+    </div>
+      <div class="form-group">
+      <label for="website">Website:</label>
+      <input [(ngModel)]="restaurant.website" placeholder="website" name="website" class="form-control" id="website">
+    </div>
+      <div class="form-group">
+        <label for="tables">Number of tables:</label>
+        <input [(ngModel)]="restaurant.tables" placeholder="number of tables" name="tables" class="form-control" id="tables">
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="city_id">Country:</label>-->
+        <!--<input [(ngModel)]="restaurant.city_id" placeholder="city_id" name="city_id" class="form-control" id="city_id">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="latitude">Latitude:</label>
+        <input [(ngModel)]="restaurant.lat" placeholder="46.3432445" name="latitude" class="form-control" id="latitude">
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude:</label>
+        <input [(ngModel)]="restaurant.lon" placeholder="25.3432434" name="longitude" class="form-control" id="longitude">
+      </div>
+    <button class="btn btn-success" (click)="onSubmit()">Create</button>
+
+  </form>
+</div>
+</body>
