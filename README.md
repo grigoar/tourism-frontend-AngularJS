@@ -14,7 +14,7 @@
 
 - This is the frontend part of the management tourist attraction destination website.
 
-- It was developed with the Angular framework based on components. 
+- It was developed with the Angular 8 framework based on components. 
 
 - The languages used are: TypeScript, HTML and CSS. 
 
